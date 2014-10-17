@@ -1,0 +1,43 @@
+#! /bin/bash
+
+if [ $# != 2 ]
+then
+    echo ""
+    echo "Description: Multiple alignment by ClustalW (slow mode)."
+    echo ""
+    echo "Usage: bash $0 <infile> <outfile>"
+    echo ""
+    exit 0
+fi
+
+infile=$1
+outfile=$2
+
+if [ ! -e $infile ]
+then
+    echo "fail to find $infile"
+    exit 0
+fi
+
+echo "infile=$infile"
+echo "outfile=$outfile"
+
+clustalw2 << EOF
+1
+$infile
+2
+9
+F
+9
+
+1
+
+$outfile
+
+x
+x
+x
+x
+
+EOF
+
